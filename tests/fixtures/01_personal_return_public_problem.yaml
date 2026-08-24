@@ -1,0 +1,39 @@
+id: 01_personal_return_public_problem
+purpose: Personal return video must be converted from a timeline into one public problem without treating multiple
+  topics as multiple primary goals.
+covers:
+- FABLE_ADVERSARIAL_1
+- P1-5
+- P1-6
+input:
+  user_request: 我想拍一期停更后为什么重新做 YouTube，内容会涉及停更、旧项目、内容平台经历和 AI，但先不要写逐字稿。
+  task_packet:
+    mode: DESIGN
+    primary_goal: RETURNING_VIEWER
+    topic: 停更后为什么重新做 YouTube
+    audience:
+      who: UNCONFIRMED
+      current_situation: UNCONFIRMED
+      problem: UNCONFIRMED
+      desired_change: UNCONFIRMED
+    packaging:
+      status: HYPOTHESIS
+    personal_fact_refs: []
+    approval_events: []
+expected:
+  status: NEEDS_KODA_DECISION
+  blockers: []
+  route:
+    video_type: COMMENTARY
+    support_level: MVP_FULL
+    personal_evidence: false
+  required_behaviors:
+  - Generate public-problem and payoff candidates before chapter design.
+  - Treat the listed topics as candidate evidence serving one primary goal, not automatically as MULTI_TASK.
+  - Mark audience and any personal facts UNCONFIRMED and SETUP_REQUIRED where needed.
+  - Keep personal_evidence false until at least one personal fact is verified.
+  prohibited_behaviors:
+  - Output a chronological personal-update outline.
+  - Invent Koda experiences or metrics.
+  - Return REJECTED without a Koda rejection event.
+  - Write a full script.

@@ -1,0 +1,54 @@
+id: 10_dual_route_experiment_vs_tutorial
+purpose: A task that preregisters an experiment and teaches a workflow routes to Public Experiment preregistration
+  first.
+covers:
+- P1-6
+- DUAL_ROUTE_DECISION
+input:
+  user_request: 我要先预注册一个 30 天实验：测试按这套 AI 视频工作流每周发布是否可持续，同时会解释工作流怎么做。
+  task_packet:
+    mode: DESIGN
+    primary_goal: RETURNING_VIEWER
+    topic: 30 天 AI 视频工作流实验
+    experiment_intent:
+      preregister_before_execution: true
+      needs_baseline: true
+      needs_metrics: true
+    teaching_action: 解释工作流步骤
+    approval_events: []
+    current_baseline:
+      metric: 每周发布完成率
+      value: FIXTURE_PROVIDED_BASELINE
+      measurement_window: 实验前 30 天
+      source_ref: FIXTURE:baseline_record
+      status: CONFIRMED
+    experiment_question: 按这套 AI 视频工作流每周发布是否可持续
+    primary_hypothesis: 按预注册流程执行可提高发布完成率
+    rules_and_constraints:
+    - 每周只测试一条完整视频工作流
+    - 不在实验中途改成功标准
+    success_metrics:
+      primary_metric: 发布完成率
+      secondary_metrics:
+      - 制作耗时
+      - 返工次数
+      data_window: 30 天
+      decision_rule: 按预注册基线比较，不用播放量单独宣布成功
+    confounders_to_log:
+    - 临时项目占用
+    - 设备故障
+    - 选题难度变化
+expected:
+  status: DRAFT
+  blockers: []
+  route:
+    video_type: PUBLIC_EXPERIMENT
+    support_level: PREREGISTRATION_ONLY
+    personal_evidence: false
+  required_behaviors:
+  - Use the preregistration template.
+  - Record baseline, hypothesis, rules, metrics, data window, and confounders before execution.
+  prohibited_behaviors:
+  - Route to Educational because a tutorial component exists.
+  - Produce a completed experiment result structure.
+  - Claim the workflow is validated.

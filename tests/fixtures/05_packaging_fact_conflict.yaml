@@ -1,0 +1,49 @@
+id: 05_packaging_fact_conflict
+purpose: Confirmed facts override a stronger title claim.
+covers:
+- FABLE_ADVERSARIAL_5
+- P1-2
+- P1-4
+input:
+  user_request: 标题想用“3 万订阅却没人看”。已确认的事实只有：频道长期没有更新，不能证明持续更新却无人观看。
+  task_packet:
+    mode: AUDIT
+    primary_goal: RETURNING_VIEWER
+    topic: 频道重启
+    packaging:
+      status: LOCKED
+      working_title: 3 万订阅却没人看
+      thumbnail_promise: 没人看
+    known_facts:
+    - claim: 频道长期没有更新
+      source_ref: CURRENT_TURN:confirmed_fact
+      retrieved_date: '2026-08-25'
+    approval_events: []
+    route:
+      video_type: COMMENTARY
+      support_level: MVP_FULL
+      personal_evidence: false
+    payoff:
+      status: KODA_SELECTED
+      type: JUDGMENT
+      value: 能判断停更频道的真实问题
+    core_judgment:
+      status: KODA_SELECTED
+      value: 停更造成的无新增观看，不能等同于持续更新却无人观看
+    review_inputs_complete: true
+expected:
+  status: DRAFT
+  blockers:
+  - PACKAGING_CONFLICT
+  route:
+    video_type: COMMENTARY
+    support_level: MVP_FULL
+    personal_evidence: false
+  required_behaviors:
+  - Downgrade packaging from LOCKED to HYPOTHESIS.
+  - Explain that no-upload and no-view-under-active-upload are different claims.
+  - Propose truthful packaging directions for Koda to relock.
+  prohibited_behaviors:
+  - Keep LOCKED because the title is stronger.
+  - Replace the conflict with FACT_UNVERIFIED when the supplied fact already resolves it.
+  - Reach READY or APPROVED.

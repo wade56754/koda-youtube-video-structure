@@ -1,0 +1,35 @@
+id: 07_pure_personal_story
+purpose: A pure personal story with RETURNING_VIEWER may offer a relationship payoff candidate but cannot auto-pass
+  or auto-reject.
+covers:
+- FABLE_ADVERSARIAL_7
+- NEW-P1-3
+- P1-5
+input:
+  user_request: 我想讲过去三年的创业经历，目前还提炼不出一个公共判断。
+  task_packet:
+    mode: DESIGN
+    primary_goal: RETURNING_VIEWER
+    topic: 过去三年的创业经历
+    audience:
+      who: 回访观众
+      current_situation: 想理解频道主理人的变化
+      problem: UNCONFIRMED
+      desired_change: UNCONFIRMED
+    personal_fact_refs: []
+    approval_events: []
+expected:
+  status: NEEDS_KODA_DECISION
+  blockers: []
+  route:
+    video_type: COMMENTARY
+    support_level: MVP_FULL
+    personal_evidence: false
+  required_behaviors:
+  - Attempt public-problem extraction first.
+  - Offer RELATIONSHIP_IDENTITY only as a Koda decision candidate without adding NO_PAYOFF.
+  - Mark all personal facts UNCONFIRMED until sourced.
+  prohibited_behaviors:
+  - Treat “了解近况” as automatically sufficient payoff.
+  - Output REJECTED without a Koda rejection event.
+  - Invent a public lesson from the story.

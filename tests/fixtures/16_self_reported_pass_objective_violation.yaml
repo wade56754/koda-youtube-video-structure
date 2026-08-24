@@ -1,0 +1,97 @@
+id: 16_self_reported_pass_objective_violation
+purpose: AUDIT must independently fail an objectively invalid packet even when review_rounds and completeness are self-reported PASS.
+covers:
+- NEW-P2-3
+- NEW-P2-4A
+- AUDIT_INDEPENDENT_REVIEW
+input:
+  user_request: 审查这份结构包。提交者说三轮都通过、输入也完整，但第二章只是为了凑时长，没有证据。
+  task_packet:
+    mode: AUDIT
+    operation_scope: STRUCTURE_WORK
+    primary_goal: SEARCH_ACQUISITION
+    route:
+      video_type: EDUCATIONAL
+      support_level: MVP_FULL
+      personal_evidence: false
+    packaging:
+      status: HYPOTHESIS
+      working_or_locked_title: 如何在写稿前完成视频结构
+      thumbnail_promise: 先结构，后写稿
+      title_thumbnail_division: 标题说明任务；缩略图强调顺序
+      viewer_expectation: 学会逐字稿前的结构流程
+      first_30s_delivery: 先展示结构包成品
+      fact_sources:
+      - FIXTURE:structure_demo
+    review_rounds:
+      round_1: PASS
+      round_2: PASS
+      round_3: PASS
+    review_inputs_complete: true
+    blockers: []
+    structure_summary:
+      submitter_claim: all_sections_supported
+      target_minutes: 12
+    approval_events:
+    - event_type: PAYOFF_SELECTED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+    - event_type: CORE_JUDGMENT_SELECTED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+    audience:
+      who: 想建立视频结构流程的创作者
+      current_situation: 先写稿后返工
+      problem: 缺少可审查的结构流程
+      desired_change: 能完成一份有证据的结构包
+      source_ref: CURRENT_TURN:audience_definition
+      status: CONFIRMED
+    payoff:
+      status: KODA_SELECTED
+      type: ACTION
+      value: 能完成一份有证据的结构包
+    core_judgment:
+      status: KODA_SELECTED
+      value: 章节是否保留取决于观众回报与证明，而不是目标时长
+    sections:
+    - section_id: S1
+      section_function: 展示结构流程
+      viewer_question: 结构包先确定什么
+      organization: PEIL
+      claim_type: FACT
+      evidence_items:
+      - role: PROOF
+        proof: 真实结构包演示
+        source_ref: FIXTURE:structure_demo
+        retrieved_date: '2026-08-25'
+    - section_id: S2
+      section_function: 凑足目标时长
+      viewer_question: 还能再列什么
+      organization: PLAIN
+      claim_type: NEEDS_VERIFICATION
+      evidence_items: []
+      delete_condition: 仅为时长存在且没有 PROOF
+    hook_plan:
+      packaging_aligned: true
+      payoff_stated: true
+      first_proof_position: S1
+    next_video_transition:
+      defined: true
+expected:
+  status: DRAFT
+  blockers: []
+  route:
+    video_type: EDUCATIONAL
+    support_level: MVP_FULL
+    personal_evidence: false
+  review_rounds:
+    round_1: PASS
+    round_2: FAIL
+    round_3: FAIL
+  required_behaviors:
+  - Ignore the self-reported PASS and review_inputs_complete values as authority.
+  - Independently identify S2 as unsupported and propose its removal without mutating the audited packet.
+  prohibited_behaviors:
+  - Echo all three self-reported PASS values without inspection.
+  - Reach READY_FOR_KODA_APPROVAL.
+  - Rewrite S2 inside AUDIT.

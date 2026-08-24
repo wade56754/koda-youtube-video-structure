@@ -1,0 +1,55 @@
+id: 02_search_tutorial
+purpose: A pure how-to request routes to Educational and is not forced into a Commentary counterargument structure.
+covers:
+- FABLE_ADVERSARIAL_2
+- P1-3
+- P1-6
+input:
+  user_request: 如何用 AI 完成一条 YouTube 视频：从选题到结构。请先设计视频结构。
+  task_packet:
+    mode: DESIGN
+    primary_goal: SEARCH_ACQUISITION
+    topic: 如何用 AI 完成一条 YouTube 视频
+    audience:
+      who: 想建立视频工作流的创作者
+      current_situation: 流程零散
+      problem: 不知道如何从选题推进到结构
+      desired_change: 能执行一套从选题到结构的流程
+      source_ref: CURRENT_TURN:audience_definition
+      status: CONFIRMED
+    payoff:
+      status: KODA_SELECTED
+      type: ACTION
+      value: 能执行从选题到结构的流程
+    core_judgment:
+      status: KODA_SELECTED
+      value: 流程应先锁定观众回报和结构，再写逐字稿
+    packaging:
+      status: HYPOTHESIS
+      working_title: 如何用 AI 完成一条 YouTube 视频
+      thumbnail_promise: 从选题到结构
+    known_facts: []
+    approval_events: []
+    proof_assets:
+    - asset_id: DEMO-001
+      description: 真实项目工作流全貌
+      source_ref: FIXTURE:provided_project_file
+    - asset_id: DEMO-002
+      description: 步骤操作与结果画面
+      source_ref: FIXTURE:provided_screen_demo
+expected:
+  status: DRAFT
+  blockers: []
+  route:
+    video_type: EDUCATIONAL
+    support_level: MVP_FULL
+    personal_evidence: false
+  required_behaviors:
+  - Use PEIL, VALUE_LOOP, PLAIN, or genuine STP as a single choice per Section Card.
+  - Show a result or workflow preview early.
+  - Require a demonstration or other PROOF for each main step.
+  prohibited_behaviors:
+  - Require a strongest counterargument merely to pass.
+  - Use COMMENTARY as the route.
+  - Stack STP and PEIL in one Section Card.
+  - Write a full script.

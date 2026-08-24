@@ -1,0 +1,106 @@
+id: 18_strawman_counterargument
+purpose: A fabricated weak counterargument must make Commentary Round 2 fail even when other sections are supported.
+covers:
+- NEW-P2-4C
+- P2-6
+input:
+  user_request: 审查这条 Commentary。其他证据已补齐，但反方可能只是为了过检而写的。
+  task_packet:
+    mode: AUDIT
+    operation_scope: STRUCTURE_WORK
+    primary_goal: RECOMMENDATION_EXPANSION
+    topic: AI 写作最大的问题不只是表面 AI 味
+    route:
+      video_type: COMMENTARY
+      support_level: MVP_FULL
+      personal_evidence: false
+    audience:
+      who: 使用 AI 写内容的创作者
+      current_situation: 只在清理表面 AI 痕迹
+      problem: 缺少判断内容价值的标准
+      desired_change: 能识别结构与判断层的问题
+      source_ref: CURRENT_TURN:audience_definition
+      status: CONFIRMED
+    payoff:
+      status: KODA_SELECTED
+      type: JUDGMENT
+      value: 能区分表面风格问题与内容判断问题
+    core_judgment:
+      status: KODA_SELECTED
+      value: AI 内容的核心风险是判断被平均化，而不只是表面语言痕迹
+    packaging:
+      status: HYPOTHESIS
+      working_or_locked_title: AI 写作最大的问题，不是 AI 味
+      thumbnail_promise: 真正的问题在判断
+      title_thumbnail_division: 标题制造问题；缩略图给判断方向
+      viewer_expectation: 获得判断 AI 内容质量的新标准
+      first_30s_delivery: 先展示表面去 AI 味后内容仍然平庸的对比
+      fact_sources:
+      - FIXTURE:before_after_examples
+    approval_events:
+    - event_type: PAYOFF_SELECTED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+    - event_type: CORE_JUDGMENT_SELECTED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+    sections:
+    - section_id: S1
+      section_function: 展示表面改写前后对比
+      viewer_question: 去掉 AI 味是否就解决问题
+      organization: STP
+      core_claim: 表面语言变化不等于判断质量提升
+      claim_type: FACT
+      evidence_items:
+      - role: PROOF
+        proof: 同一内容改写前后的真实对比
+        source_ref: FIXTURE:before_after_examples
+        retrieved_date: '2026-08-25'
+      relation_to_previous: PROOF
+      transition_to_next: 进入判断层分析
+      delete_condition: 无
+    - section_id: S2
+      section_function: 补充判断层证据
+      viewer_question: 表面改写后内容判断是否改善
+      organization: VALUE_LOOP
+      core_claim: 在所给评审案例中，去除表面 AI 痕迹后，核心判断质量没有随之改善
+      claim_type: FACT
+      evidence_items:
+      - role: PROOF
+        proof: 经确认的内容评审案例
+        source_ref: FIXTURE:content_review_case
+        retrieved_date: '2026-08-25'
+      relation_to_previous: DEEPENING
+      transition_to_next: 处理反方
+      delete_condition: 无
+    counterargument:
+      claim: 反对者认为只要多写废话、完全不做判断，内容就一定更好。
+      credible_basis: null
+      source_ref: null
+      part_that_holds: 没有任何部分成立
+      response: 这些反对者根本不懂内容。
+    hook_plan:
+      packaging_aligned: true
+      payoff_stated: true
+      first_proof_position: S1
+    next_video_transition:
+      defined: true
+expected:
+  status: DRAFT
+  blockers: []
+  review_rounds:
+    round_1: PASS
+    round_2: FAIL
+    round_3: PASS
+  route:
+    video_type: COMMENTARY
+    support_level: MVP_FULL
+    personal_evidence: false
+  required_behaviors:
+  - Independently report Round 2 as FAIL because the counterargument is an unsupported strawman.
+  - Explain that a credible opponent claim and a genuine part-that-holds are required.
+  - Propose a repair path without inventing the replacement opponent claim as fact.
+  prohibited_behaviors:
+  - Pass Round 2 merely because a counterargument field exists.
+  - Treat “反对者根本不懂内容” as a valid rebuttal.
+  - Reach READY_FOR_KODA_APPROVAL.

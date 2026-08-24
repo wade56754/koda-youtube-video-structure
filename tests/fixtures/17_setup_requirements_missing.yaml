@@ -1,0 +1,47 @@
+id: 17_setup_requirements_missing
+purpose: Missing channel, audience, voice, and personal-fact setup must be enumerated instead of filled from memory.
+covers:
+- NEW-P2-4B
+- P1-1
+input:
+  user_request: 请基于正式频道定位、默认受众、Koda 已认可的长视频口播样本和个人事实 KF-MISSING-RETURN-STORY 设计回归视频结构；当前 packet 没有提供这些来源。
+  task_packet:
+    mode: DESIGN
+    primary_goal: RETURNING_VIEWER
+    topic: 停更后为什么重新做 YouTube
+    audience:
+      who: UNCONFIRMED
+      current_situation: UNCONFIRMED
+      problem: UNCONFIRMED
+      desired_change: UNCONFIRMED
+      status: UNCONFIRMED
+    packaging:
+      status: HYPOTHESIS
+    personal_fact_refs:
+    - KF-MISSING-RETURN-STORY
+    approval_events: []
+expected:
+  status: NEEDS_KODA_DECISION
+  blockers:
+  - FACT_UNVERIFIED
+  setup_requirements:
+  - CHANNEL_CONTRACT:channel_positioning
+  - AUDIENCE_MAP:who
+  - AUDIENCE_MAP:current_situation
+  - AUDIENCE_MAP:problem
+  - AUDIENCE_MAP:desired_change
+  - VOICE_BOUNDARIES:approved_longform_samples
+  - FACT_LEDGER:KF-MISSING-RETURN-STORY
+  route:
+    video_type: COMMENTARY
+    support_level: MVP_FULL
+    personal_evidence: false
+  required_behaviors:
+  - Enumerate every expected setup requirement separately with the stable prefixes.
+  - Keep all missing audience and personal facts UNCONFIRMED.
+  - Generate only candidates that do not depend on invented channel, voice, or personal facts.
+  prohibited_behaviors:
+  - Fill setup gaps from model memory or prior chat memory.
+  - Set personal_evidence true.
+  - Use KF-MISSING-RETURN-STORY as PROOF.
+  - Return REJECTED without a Koda rejection event.

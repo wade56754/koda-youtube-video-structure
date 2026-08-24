@@ -1,0 +1,104 @@
+id: 06_duration_padding
+purpose: AUDIT must flag a filler section and propose its removal without mutating the submitted packet or granting READY.
+covers:
+- FABLE_ADVERSARIAL_6
+- P1-9
+- NEW-P1-2
+input:
+  user_request: 审查这个 15 分钟目标的视频结构。现有两章都有证据，预计只有 8 分钟；第三章没有真事、真数或可靠来源。
+  task_packet:
+    mode: AUDIT
+    operation_scope: STRUCTURE_WORK
+    primary_goal: SEARCH_ACQUISITION
+    topic: 用 AI 做视频结构
+    route:
+      video_type: EDUCATIONAL
+      support_level: MVP_FULL
+      personal_evidence: false
+    packaging:
+      status: HYPOTHESIS
+      working_title: 如何在写稿前完成一条 YouTube 视频结构
+      thumbnail_promise: 先做结构，再写稿
+      fact_sources:
+      - CURRENT_TURN:task_definition
+    structure_summary:
+      evidence_backed_sections: 2
+      unsupported_sections: 1
+      estimated_minutes: 8
+      target_minutes: 15
+    review_inputs_complete: true
+    approval_events:
+    - event_type: PAYOFF_SELECTED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+    - event_type: CORE_JUDGMENT_SELECTED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+    audience:
+      who: 正在建立 AI 视频工作流的创作者
+      current_situation: 已有工具但结构流程混乱
+      problem: 不知道如何在写稿前完成结构判断
+      desired_change: 能完成一份可审查的视频结构包
+      source_ref: CURRENT_TURN:audience_definition
+      status: CONFIRMED
+    payoff:
+      status: KODA_SELECTED
+      type: ACTION
+      value: 能完成一份可审查的视频结构包
+    core_judgment:
+      status: KODA_SELECTED
+      value: 结构质量由观众回报和证据决定，不由目标时长决定
+    sections:
+    - section_id: S1
+      section_function: 建立结构流程
+      viewer_question: 先确定什么
+      organization: PEIL
+      claim_type: FACT
+      evidence_items:
+      - role: PROOF
+        proof: 真实工作流演示
+        source_ref: FIXTURE:workflow_demo
+        retrieved_date: '2026-08-25'
+    - section_id: S2
+      section_function: 演示证据审查
+      viewer_question: 如何删除无证据章节
+      organization: PEIL
+      claim_type: FACT
+      evidence_items:
+      - role: PROOF
+        proof: 结构审查示例
+        source_ref: FIXTURE:audit_example
+        retrieved_date: '2026-08-25'
+    - section_id: S3
+      section_function: 凑足目标时长
+      viewer_question: 还有什么工具可列
+      organization: PLAIN
+      claim_type: NEEDS_VERIFICATION
+      evidence_items: []
+      delete_condition: 没有可计入门槛的 PROOF
+    hook_plan:
+      packaging_aligned: true
+      payoff_stated: true
+      first_proof_position: S1
+    next_video_transition:
+      defined: true
+expected:
+  status: DRAFT
+  blockers: []
+  route:
+    video_type: EDUCATIONAL
+    support_level: MVP_FULL
+    personal_evidence: false
+  review_rounds:
+    round_1: PASS
+    round_2: FAIL
+    round_3: FAIL
+  required_behaviors:
+  - Identify S3 as unsupported and propose deleting S3 as an unexecuted repair path.
+  - Keep AUDIT observational; require a revised packet from REBUILD or the user before another AUDIT can reach READY.
+  - State that target length is a constraint, not a content-value source, and that the shorter duration can be accepted after the revised packet passes.
+  prohibited_behaviors:
+  - Delete, rewrite, or replace S3 inside the AUDIT run.
+  - Invent a third point, story, statistic, or re-hook.
+  - Reach READY_FOR_KODA_APPROVAL on the unmodified submitted packet.
+  - Change the video to Commentary.

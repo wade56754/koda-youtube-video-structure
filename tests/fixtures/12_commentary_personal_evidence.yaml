@@ -1,0 +1,56 @@
+id: 12_commentary_personal_evidence
+purpose: Commentary with verified, scope-authorized personal evidence uses a boolean subtype flag, not a new route enum.
+covers:
+- P1-6
+- PERSONAL_EVIDENCE_SUBTYPE
+- NEW-P2-5
+input:
+  user_request: 用我已确认的项目经历证明一个与创作者有关的公共判断。
+  task_packet:
+    mode: DESIGN
+    primary_goal: RECOMMENDATION_EXPANSION
+    topic: 个人经历如何证明内容系统必须可持续
+    audience:
+      who: 个人创作者
+      current_situation: 依赖高强度手工作业
+      problem: 产出不可持续
+      desired_change: 能判断工作流哪里需要重构
+      source_ref: CURRENT_TURN:audience_definition
+      status: CONFIRMED
+    payoff:
+      status: KODA_SELECTED
+      type: JUDGMENT
+      value: 能判断内容系统是否可持续
+    core_judgment:
+      status: KODA_SELECTED
+      value: 不可持续的生产方式会限制长期内容增长
+    personal_fact_refs:
+    - KF-001-CONFIRMED-FOR-THIS-FIXTURE
+    fact_ledger_snapshot:
+    - fact_id: KF-001-CONFIRMED-FOR-THIS-FIXTURE
+      claim: 本验收 fixture 中已确认：Koda 使用的高强度手工作业流程无法持续，并导致该项目的长期内容更新中断。
+      status: CONFIRMED
+      source_ref: FIXTURE:explicit_confirmation
+      confirmation_event: FIXTURE:explicit_confirmation
+      confirmed_date: '2026-08-25'
+      recheck_rule: 仅在 fixture 12 内有效，不外推为真实频道当前事实。
+      allowed_uses:
+      - video_topic: 个人经历如何证明内容系统必须可持续
+        supported_public_judgment: 不可持续的生产方式会限制长期内容增长
+        role: PROOF
+        exclusions: 不得外推到其他项目、收入、时长、普遍因果强度或当前频道数据。
+    approval_events: []
+expected:
+  status: DRAFT
+  blockers: []
+  route:
+    video_type: COMMENTARY
+    support_level: MVP_FULL
+    personal_evidence: true
+  required_behaviors:
+  - Use COMMENTARY as the only video type.
+  - Use the confirmed personal fact only as PROOF for the precisely allowed public judgment.
+  prohibited_behaviors:
+  - Create a separate video-type enum for Commentary with personal evidence.
+  - Turn the structure into a chronological autobiography.
+  - Use the personal fact outside the stated video topic, public judgment, or fixture scope.

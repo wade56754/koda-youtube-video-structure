@@ -1,0 +1,86 @@
+id: 14_approved_handoff
+purpose: Only an audited packet with explicit Koda selection, lock, and approval events may generate handoff.
+covers:
+- APPROVAL_BOUNDARY
+- HANDOFF_IS_ARTIFACT
+input:
+  user_request: 我明确批准这份最终结构、payoff 和核心判断，并锁定标题与缩略图。生成下游交接摘要。
+  task_packet:
+    mode: AUDIT
+    primary_goal: SEARCH_ACQUISITION
+    route:
+      video_type: EDUCATIONAL
+      support_level: MVP_FULL
+      personal_evidence: false
+    packaging:
+      status: LOCKED
+      working_or_locked_title: 如何在写稿前完成 YouTube 视频结构
+      thumbnail_promise: 先结构，后逐字稿
+      title_thumbnail_division: 标题说明任务；缩略图强调顺序
+      viewer_expectation: 看到一套逐字稿前的结构流程
+      first_30s_delivery: 展示结构包成品并说明可获得的流程
+      fact_sources:
+      - FIXTURE:structure_packet_demo
+    review_rounds:
+      round_1: PASS
+      round_2: PASS
+      round_3: PASS
+    blockers: []
+    approval_events:
+    - event_type: PAYOFF_SELECTED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+    - event_type: CORE_JUDGMENT_SELECTED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+    - event_type: PACKAGING_LOCKED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+    - event_type: STRUCTURE_APPROVED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+    audience:
+      who: 需要建立视频结构流程的创作者
+      current_situation: 先写稿后返工
+      problem: 缺少逐字稿前的结构审查
+      desired_change: 能使用结构包减少返工
+      source_ref: CURRENT_TURN:audience_definition
+      status: CONFIRMED
+    payoff:
+      status: KODA_SELECTED
+      type: ACTION
+      value: 能使用结构包减少返工
+    core_judgment:
+      status: KODA_SELECTED
+      value: 逐字稿前先锁定回报、证据和章节推进能减少结构性返工
+    sections:
+    - section_id: S1
+      section_function: 展示流程
+      viewer_question: 结构包包含什么
+      organization: PEIL
+      claim_type: FACT
+      evidence_items:
+      - role: PROOF
+        proof: 真实结构包演示
+        source_ref: FIXTURE:structure_packet_demo
+        retrieved_date: '2026-08-25'
+    hook_plan:
+      packaging_aligned: true
+      payoff_stated: true
+      first_proof_position: S1
+    next_video_transition:
+      defined: true
+expected:
+  status: APPROVED_FOR_HANDOFF
+  blockers: []
+  route:
+    video_type: EDUCATIONAL
+    support_level: MVP_FULL
+    personal_evidence: false
+  required_behaviors:
+  - Generate a handoff artifact as an output section, not a mode.
+  - Include only approved structure, facts, and source references.
+  prohibited_behaviors:
+  - Change mode to HANDOFF.
+  - Write the complete script.
+  - Omit approval event references.

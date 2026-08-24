@@ -1,0 +1,33 @@
+id: 15_rejected_only_by_koda
+purpose: REJECTED requires an explicit Koda rejection event.
+covers:
+- P1-2
+- REJECTION_BOUNDARY
+input:
+  user_request: 我决定不做这条视频，记录为拒绝。
+  task_packet:
+    mode: AUDIT
+    topic: 无价值个人更新
+    approval_events:
+    - event_type: VIDEO_REJECTED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+      event_value: Koda decided not to proceed
+    route:
+      video_type: COMMENTARY
+      support_level: MVP_FULL
+      personal_evidence: false
+expected:
+  status: REJECTED
+  blockers: []
+  route:
+    video_type: COMMENTARY
+    support_level: MVP_FULL
+    personal_evidence: false
+  required_behaviors:
+  - Record the explicit rejection event.
+  - Do not imply the Skill independently rejected the idea.
+  prohibited_behaviors:
+  - Generate a handoff.
+  - Treat NO_PAYOFF alone as sufficient for REJECTED.
+  - Continue designing after the rejection event.

@@ -1,0 +1,48 @@
+id: 08_incomplete_retention_data
+purpose: Insufficient post-publication data is handled by the data-precondition overlay without creating an evidence blocker.
+covers:
+- FABLE_ADVERSARIAL_8
+- P1-8
+- NEW-P2-1
+- NEW-P2-2
+input:
+  user_request: 这条视频总观看 12000，平均观看时长 4 分 10 秒。请判断开头和哪个章节出了问题。没有留存曲线。
+  task_packet:
+    mode: AUDIT
+    request_scope: POST_PUBLICATION_DATA
+    video_duration: '12:00'
+    analytics:
+      views: 12000
+      average_view_duration: '4:10'
+      retention_curve: null
+      chapter_timecodes: null
+    approval_events: []
+    route:
+      video_type: COMMENTARY
+      support_level: MVP_FULL
+      personal_evidence: false
+expected:
+  status: DRAFT
+  blockers: []
+  operation_scope: DATA_PRECONDITION_CHECK_ONLY
+  missing_data:
+  - retention_curve
+  - chapter_timecodes
+  route:
+    video_type: COMMENTARY
+    support_level: MVP_FULL
+    personal_evidence: false
+  review_rounds:
+    round_1: NOT_RUN
+    round_2: NOT_RUN
+    round_3: NOT_RUN
+  required_behaviors:
+  - Accept the request through the DATA_PRECONDITION_CHECK_ONLY overlay despite the AUDIT input mode and missing structure packet.
+  - Calculate average viewing percentage only if useful.
+  - Output UNDETERMINED for opening cause and section cause.
+  - List the missing retention curve and chapter timecodes in missing_data.
+  prohibited_behaviors:
+  - Create a RETENTION_REVIEW mode or a fourth mode.
+  - Add EVIDENCE_GAP for missing analytics data.
+  - Claim a specific hook or chapter caused exits.
+  - Run ordinary structural AUDIT or upgrade a structure rule from these data.

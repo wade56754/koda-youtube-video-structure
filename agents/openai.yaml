@@ -1,0 +1,6 @@
+interface:
+  display_name: "Koda YouTube 视频结构"
+  short_description: "在逐字稿前设计、审查或重构有证据的视频结构"
+  default_prompt: "Use $koda-youtube-video-structure to design, audit, or rebuild this YouTube video structure without writing a full script."
+policy:
+  allow_implicit_invocation: true

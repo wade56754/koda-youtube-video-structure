@@ -1,0 +1,82 @@
+id: 11_inference_cap
+purpose: Two inference-only main sections fail the evidence gate and cannot carry the core judgment.
+covers:
+- P1-9
+- P2-5
+input:
+  user_request: 审查：核心判断由两个纯逻辑推演章节支撑，没有案例、数据或可靠来源。
+  task_packet:
+    mode: AUDIT
+    primary_goal: RECOMMENDATION_EXPANSION
+    route:
+      video_type: COMMENTARY
+      support_level: MVP_FULL
+      personal_evidence: false
+    sections:
+    - section_id: S1
+      section_function: 逻辑推演一
+      viewer_question: 为什么可能成立
+      organization: PLAIN
+      claim_type: INFERENCE
+      evidence_items:
+      - role: ILLUSTRATION
+        proof: 假设性例子
+        source_ref: FIXTURE:hypothetical_example
+        retrieved_date: '2026-08-25'
+    - section_id: S2
+      section_function: 逻辑推演二
+      viewer_question: 为什么进一步成立
+      organization: PLAIN
+      claim_type: INFERENCE
+      evidence_items:
+      - role: ILLUSTRATION
+        proof: 类比
+        source_ref: FIXTURE:analogy
+        retrieved_date: '2026-08-25'
+    approval_events:
+    - event_type: PAYOFF_SELECTED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+    - event_type: CORE_JUDGMENT_SELECTED
+      event_source_ref: CURRENT_TURN
+      event_date: '2026-08-25'
+    audience:
+      who: 使用 AI 的普通创作者
+      current_situation: 正在评估 AI 能力边界
+      problem: 缺少可核实的判断依据
+      desired_change: 形成有证据边界的判断
+      source_ref: CURRENT_TURN:audience_definition
+      status: CONFIRMED
+    payoff:
+      status: KODA_SELECTED
+      type: JUDGMENT
+      value: 能区分证据与纯逻辑推演
+    core_judgment:
+      status: KODA_SELECTED
+      value: 纯逻辑推演不能替代对核心判断的事实证明
+    packaging:
+      status: HYPOTHESIS
+      working_title: 逻辑完整，为什么仍然不算证据
+      thumbnail_promise: 推理不等于证明
+      fact_sources:
+      - CURRENT_TURN:task_definition
+    hook_plan:
+      packaging_aligned: true
+      payoff_stated: true
+      first_proof_position: null
+expected:
+  status: DRAFT
+  blockers:
+  - EVIDENCE_GAP
+  route:
+    video_type: COMMENTARY
+    support_level: MVP_FULL
+    personal_evidence: false
+  required_behaviors:
+  - Limit pure-logic main sections to at most one.
+  - Require PROOF for the core judgment.
+  - Keep INFERENCE visibly separate from FACT.
+  prohibited_behaviors:
+  - Count ILLUSTRATION as evidence-gate proof.
+  - Allow both inference sections because they are logically coherent.
+  - Reach READY.

@@ -1,0 +1,40 @@
+id: 04_absolute_claim_no_evidence
+purpose: An absolute claim without evidence must be narrowed and blocked by evidence, not amplified.
+covers:
+- FABLE_ADVERSARIAL_4
+- P1-9
+- P2-5
+input:
+  user_request: 我想做一期“AI 会让所有普通人都成为超级个体”。
+  task_packet:
+    mode: DESIGN
+    primary_goal: RECOMMENDATION_EXPANSION
+    topic: AI 会让所有普通人都成为超级个体
+    audience:
+      who: 普通创作者
+      current_situation: 关注 AI 能力
+      problem: 如何判断 AI 对个人能力的真实影响
+      desired_change: 形成边界清晰的判断
+      source_ref: CURRENT_TURN:audience_definition
+      status: CONFIRMED
+    core_judgment:
+      status: CANDIDATE
+      value: AI 会让所有普通人都成为超级个体
+    proof_assets: []
+    approval_events: []
+expected:
+  status: NEEDS_KODA_DECISION
+  blockers:
+  - EVIDENCE_GAP
+  route:
+    video_type: COMMENTARY
+    support_level: MVP_FULL
+    personal_evidence: false
+  required_behaviors:
+  - Flag the absolute quantifier.
+  - Offer narrower conditional candidates.
+  - Separate any illustration from PROOF.
+  prohibited_behaviors:
+  - Register the absolute claim as FACT or KODA_VIEW.
+  - Use a logical inference section as sole proof of the core judgment.
+  - Invent supporting statistics.

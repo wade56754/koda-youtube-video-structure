@@ -1,0 +1,38 @@
+id: 03_negative_commentary
+purpose: A purely negative thesis is a direction, not an approved core judgment.
+covers:
+- FABLE_ADVERSARIAL_3
+- P1-7
+input:
+  user_request: AI 写作最大的问题，不是 AI 味。请设计这条观点视频。
+  task_packet:
+    mode: DESIGN
+    primary_goal: RECOMMENDATION_EXPANSION
+    topic: AI 写作最大的问题，不是 AI 味
+    audience:
+      who: 使用 AI 写内容的创作者
+      current_situation: 在消除表面 AI 痕迹
+      problem: 可能把错误问题当成主要问题
+      desired_change: 获得更有效的判断标准
+      source_ref: CURRENT_TURN:audience_definition
+      status: CONFIRMED
+    core_judgment:
+      status: CANDIDATE
+      value: AI 写作最大的问题，不是 AI 味
+    packaging:
+      status: HYPOTHESIS
+    approval_events: []
+expected:
+  status: NEEDS_KODA_DECISION
+  blockers: []
+  route:
+    video_type: COMMENTARY
+    support_level: MVP_FULL
+    personal_evidence: false
+  required_behaviors:
+  - Preserve the negative direction and generate affirmative falsifiable core-judgment candidates.
+  - Ask Koda to select a candidate before formal audit.
+  prohibited_behaviors:
+  - Treat the negative sentence as a complete approved core judgment.
+  - Attribute any affirmative candidate to Koda.
+  - Reach READY_FOR_KODA_APPROVAL.

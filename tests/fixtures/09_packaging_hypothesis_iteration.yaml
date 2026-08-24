@@ -1,0 +1,48 @@
+id: 09_packaging_hypothesis_iteration
+purpose: Packaging can remain a hypothesis during draft design and be revised after evidence mapping.
+covers:
+- P1-4
+- PACKAGING_ITERATION
+input:
+  user_request: 标题和封面还没最终定，但有一个不夸张的工作版本。先做结构，发现不匹配就改包装。
+  task_packet:
+    mode: DESIGN
+    primary_goal: SEARCH_ACQUISITION
+    topic: 如何判断一个选题值不值得做
+    audience:
+      who: 准备做 YouTube 的创作者
+      current_situation: 有多个选题
+      problem: 不知道先做哪个
+      desired_change: 能用一套判断流程筛选选题
+      source_ref: CURRENT_TURN:audience_definition
+      status: CONFIRMED
+    payoff:
+      status: KODA_SELECTED
+      type: DECISION
+      value: 能筛选选题
+    core_judgment:
+      status: KODA_SELECTED
+      value: 先判断观众问题和证据，再判断工具与形式
+    packaging:
+      status: HYPOTHESIS
+      working_title: 一个选题值不值得做，先看这三个问题
+      thumbnail_promise: 先别写稿
+    approval_events: []
+    proof_assets:
+    - asset_id: METHOD-001
+      description: 选题判断流程的真实演示材料
+      source_ref: FIXTURE:provided_method_demo
+expected:
+  status: DRAFT
+  blockers: []
+  route:
+    video_type: EDUCATIONAL
+    support_level: MVP_FULL
+    personal_evidence: false
+  required_behaviors:
+  - Proceed with draft structure under HYPOTHESIS packaging.
+  - Allow packaging revision when claim or evidence mapping changes.
+  prohibited_behaviors:
+  - Add PACKAGING_MISSING merely because packaging is not LOCKED.
+  - Approve handoff.
+  - Treat packaging as a one-way gate.
