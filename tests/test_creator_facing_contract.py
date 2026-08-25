@@ -91,6 +91,11 @@ class CreatorFacingContractTest(unittest.TestCase):
             "PROOF",
             "APPROVED_FOR_HANDOFF",
             "handoff",
+            "DESIGN",
+            "AUDIT",
+            "REBUILD",
+            "payoff",
+            "main",
             "```yaml",
             "```json",
         )
@@ -129,6 +134,11 @@ class CreatorFacingContractTest(unittest.TestCase):
         self.assertIn("回复直接以 `## 这期视频是什么` 开头", text)
         self.assertIn("不得增加第五个二级标题", text)
         self.assertIn("拒绝也放在 `## 还需要补充什么`", text)
+        self.assertIn("至少写出一个完整的 `https://` 链接", creator_view)
+        self.assertIn(
+            "默认回复不得原样显示 `DESIGN`、`AUDIT`、`REBUILD`、`payoff`、`main`",
+            creator_view,
+        )
         for token in ("UNCONFIRMED", "PROOF", "APPROVED_FOR_HANDOFF", "handoff"):
             with self.subTest(token=token):
                 self.assertIn(f"`{token}`", creator_view)
