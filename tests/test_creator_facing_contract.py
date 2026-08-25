@@ -69,6 +69,8 @@ class CreatorFacingContractTest(unittest.TestCase):
             "## 逐字稿大纲",
             "## 还需要补充什么",
         ]
+        self.assertTrue(text.startswith(headings[0]))
+        self.assertEqual(re.findall(r"^## .+$", text, flags=re.M), headings)
         positions = [text.index(heading) for heading in headings]
         self.assertEqual(positions, sorted(positions))
 
@@ -119,6 +121,9 @@ class CreatorFacingContractTest(unittest.TestCase):
         self.assertIn("只有用户明确要求技术包、审计详情或 debug", text)
         self.assertIn("完整长视频逐字稿", text)
         self.assertIn("不得代替 Koda 批准", text)
+        self.assertIn("回复直接以 `## 这期视频是什么` 开头", text)
+        self.assertIn("不得增加第五个二级标题", text)
+        self.assertIn("拒绝也放在 `## 还需要补充什么`", text)
 
     def test_v020_release_metadata_and_ci_cover_the_new_contract(self):
         readme = README.read_text(encoding="utf-8")

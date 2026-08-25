@@ -349,6 +349,8 @@ round_3_retention_and_compression: PASS | FAIL | NOT_RUN
 
 除非用户明确要求技术包，普通回复只输出以下四部分，并按此顺序：
 
+回复直接以 `## 这期视频是什么` 开头，不写前言、执行过程或测试说明；全文只能有下面四个二级标题，不得增加第五个二级标题。段落内部需要分组时使用加粗小标题或三级标题。
+
 ### `## 这期视频是什么`
 
 - **题材**：用一句话说清主要靠什么材料展开；
@@ -370,6 +372,8 @@ round_3_retention_and_compression: PASS | FAIL | NOT_RUN
 ### `## 还需要补充什么`
 
 只列会影响真实性、结构选择或下一步写作的具体信息。使用“还缺的资料”“它影响哪一段”“补齐后能做什么”这类普通表达，不展示内部路径、状态或字段名。
+
+若用户同时要求完整逐字稿、代替 Koda 批准或提前交接，拒绝也放在 `## 还需要补充什么`，并用普通中文说明下一步。不要为拒绝增加第五部分，也不要引用审批文件路径、字段名或内部状态值来证明拒绝。
 
 默认创作者视图不得出现 YAML / JSON 代码块、固定字段表、内部状态枚举或未解释的英文缩写。尤其不要显示 `structure_packet`、`mode`、`operation_scope`、`blockers`、`setup_requirements`、`video_type`、`support_level`、`primary_goal`、`source_ref`、`Section Card`、`organization_fields`、`claim_type`、`eligible_for_handoff`。
 
