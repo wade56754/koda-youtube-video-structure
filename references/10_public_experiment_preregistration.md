@@ -1,4 +1,4 @@
-# Public Experiment Preregistration — MVP v0.1.1
+# Public Experiment Preregistration — v0.2.0
 
 ## 使用边界
 
@@ -9,7 +9,7 @@
 ## 预注册模板
 
 ```text
-skill_version: 0.1.1
+skill_version: 0.2.0
 mode: DESIGN
 operation_scope: STRUCTURE_WORK
 status: DRAFT
@@ -74,4 +74,4 @@ koda_decisions_required:
 - 不得事后修改成功标准而不记录变更事件；
 - 播放量不能单独宣布成功；
 - 结果解释必须区分数据事实、可能解释、干扰因素和不能确认；
-- 完整 Public Experiment 结果片结构延后，不在 v0.1.1 假装实现。
+- 完整 Public Experiment 结果片结构延后，不在 v0.2.0 假装实现。

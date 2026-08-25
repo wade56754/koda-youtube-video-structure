@@ -1,30 +1,35 @@
-# Workflows and Output Templates — MVP v0.1.1
+# Workflows and Output Templates — v0.2.0
 
 ## 1. DESIGN
 
 1. 读取 setup 文件与 task packet；
-2. 检查单一主要任务与受众地图；
-3. 按“实验预注册 → 教学动作 → 观点”路由。
+2. 识别题材：说明这期主要依靠个人经历、观点论证、操作教程、案例、执行前实验或混合材料中的哪一种；
+3. 提炼主题：用一句普通中文写清这期真正回答的问题或留下的判断；
+4. 确认观众与观看回报：谁会看、他卡在哪里、看完后发生什么变化；
+5. 比较候选结构：至少比较两个最相关的母结构，说明作用、材料要求、来源与不优先原因；
+6. 选择结构：按“执行前实验 → 可执行教学 → 观点论证”的路由顺序选定最合适的母结构。
 
-若第 3 步命中 `PUBLIC_EXPERIMENT`，跳过下面普通 DESIGN 的步骤 4—9，只按 `10_public_experiment_preregistration.md` 生成季初预注册包，输出 `DRAFT`，不得同时生成 Commentary / Educational Section Cards。
+若第 6 步命中 `PUBLIC_EXPERIMENT`，跳过下面普通 DESIGN 的步骤 7—11，只按 `10_public_experiment_preregistration.md` 生成季初预注册包，输出 `DRAFT`，不得同时生成 Commentary / Educational Section Cards。
 
-4. 对非 `PUBLIC_EXPERIMENT` 输入，若以个人经历为主，先做公共命题化；
-5. 生成 payoff 候选，等待 Koda 选择；
-6. 检查纯否定命题，必要时生成肯定式候选；
-7. 形成包装 `HYPOTHESIS`；
-8. 建立最小 claim map 与证据缺口；
-9. 选择 Commentary 或 Educational 母结构并生成 Section Cards；
-10. 输出 `DRAFT` 或 `NEEDS_KODA_DECISION`。
+7. 对非 `PUBLIC_EXPERIMENT` 输入，若以个人经历为主，做公共命题化；
+8. 生成 payoff 和核心判断候选，等待 Koda 选择；
+9. 检查纯否定命题，必要时生成肯定式候选；
+10. 形成包装假设、最小主张—证据图和内部章节卡；
+11. 生成内部审计包，再翻译为默认创作者视图；
+12. 输出 `DRAFT` 或 `NEEDS_KODA_DECISION` 的内部状态，但默认回复不展示状态枚举。
 
 `DESIGN` 不得输出 `READY_FOR_KODA_APPROVAL` 或 `APPROVED_FOR_HANDOFF`。
 
 ## 2. REBUILD
 
-1. 不润色句子，先拆解原稿：主题、主问题、核心判断、章节功能、证据、重复、事实风险、因果断点；
-2. 标记应删除、合并或重排的内容；
-3. 对普通结构工作重新执行 DESIGN 的路由与步骤；命中 `PUBLIC_EXPERIMENT` 时仍只生成预注册包；
-4. 输出一个新的 `DRAFT` 或 `NEEDS_KODA_DECISION`；
-5. 保留“原结构 → 新结构”的变更理由。
+1. 不润色句子，先拆解原稿的事实、证据、重复、风险和因果断点；
+2. 重新识别题材，不能沿用旧稿自报片型；
+3. 重新提炼主题，删除不能被一个公共问题统摄的旁支；
+4. 重新确认观众与观看回报，不能用作者近况代替观众收获；
+5. 标记应删除、合并或重排的内容；
+6. 比较候选结构并说明各自作用、来源和材料要求；
+7. 选择结构，再执行普通 DESIGN 的事实、包装、证据与章节步骤；命中 `PUBLIC_EXPERIMENT` 时仍只生成预注册包；
+8. 生成新的内部审计包与默认创作者视图，并保留“原结构 → 新结构”的变更理由。
 
 `REBUILD` 持有改写结构的权限，但不得输出完整逐字稿，也不得直接批准。
 
@@ -65,7 +70,7 @@
 
 ## 5. Task packet 输入契约
 
-v0.1.1 使用 Markdown 或 YAML 形式的 task packet，不使用 JSON Schema。当前任务不使用的键可以省略；缺失值写 `UNCONFIRMED`，任务所需但缺失的输入同时写入 `setup_requirements[]`。
+v0.2.0 使用 Markdown 或 YAML 形式的内部 task packet，不使用 JSON Schema。当前任务不使用的键可以省略；缺失值写 `UNCONFIRMED`，任务所需但缺失的输入同时写入 `setup_requirements[]`。这些字段默认不向普通用户展示。
 
 ### 5.1 通用控制与内容键
 
@@ -76,6 +81,12 @@ operation_scope: STRUCTURE_WORK | DATA_PRECONDITION_CHECK_ONLY
 request_scope:
 video_id:
 topic:
+subject_matter:
+  material_type:
+  material_summary:
+theme:
+  central_question:
+  plain_language_judgment:
 primary_goal: SEARCH_ACQUISITION | RECOMMENDATION_EXPANSION | RETURNING_VIEWER
 
 audience:
@@ -203,12 +214,14 @@ analytics:
 
 缺少的数据写入 `missing_data[]`；不得用 `review_inputs_complete` 或用户要求“直接判断”绕过数据前提。
 
-## 6. `structure_packet` 固定输出顺序
+## 6. 内部审计包：`structure_packet`
+
+内部审计包负责验证、独立 `AUDIT`、状态记录和跨会话连续性。Agent 必须先完成它，再翻译成用户能读懂的默认创作者视图。内部包不得因为对外文案简化而删除事实门、证据角色、三轮审查、审批事件或 handoff 边界。
 
 ### A. 控制信息
 
 ```text
-skill_version: 0.1.1
+skill_version: 0.2.0
 task_id:
 mode: DESIGN | AUDIT | REBUILD
 operation_scope: STRUCTURE_WORK | DATA_PRECONDITION_CHECK_ONLY
@@ -233,6 +246,10 @@ missing_data: []
 
 ### C. 主要任务与受众
 
+- `subject_matter.material_type`
+- `subject_matter.material_summary`
+- `theme.central_question`
+- `theme.plain_language_judgment`
 - `primary_goal`
 - `audience.who`
 - `audience.current_situation`
@@ -328,7 +345,43 @@ round_3_retention_and_compression: PASS | FAIL | NOT_RUN
 - 只有 `APPROVED_FOR_HANDOFF` 时输出下游 handoff 摘要；
 - handoff 只包含批准后的结构、证据和事实引用，不含完整逐字稿。
 
-## 7. 决策与批准事件
+## 7. 默认创作者视图
+
+除非用户明确要求技术包，普通回复只输出以下四部分，并按此顺序：
+
+### `## 这期视频是什么`
+
+- **题材**：用一句话说清主要靠什么材料展开；
+- **主题**：用一句小白能懂的话说清真正回答的问题或留下的判断；
+- **目标观众**：说明谁最需要看；
+- **看完能带走什么**：写出理解、判断、决定或行动上的变化。
+
+### `## 为什么选这种结构`
+
+- 比较最相关的候选结构；
+- 每个候选用中文说明作用、需要的材料、适合或不适合的原因；
+- 说明所选结构的理论 / 方法来源及本 Skill 的改编；
+- 项目自定义规则必须直说是项目规则，不能伪装成学术模型。
+
+### `## 逐字稿大纲`
+
+按自然段落输出，每段必须包含：普通中文标题、这一段的作用、2—5 个口语化要点、例子 / 证据 / 画面、怎么接到下一段、预计时长。它要足以交给下游写作者继续写，但不能成为完整长视频逐字稿。
+
+### `## 还需要补充什么`
+
+只列会影响真实性、结构选择或下一步写作的具体信息。使用“还缺的资料”“它影响哪一段”“补齐后能做什么”这类普通表达，不展示内部路径、状态或字段名。
+
+默认创作者视图不得出现 YAML / JSON 代码块、固定字段表、内部状态枚举或未解释的英文缩写。尤其不要显示 `structure_packet`、`mode`、`operation_scope`、`blockers`、`setup_requirements`、`video_type`、`support_level`、`primary_goal`、`source_ref`、`Section Card`、`organization_fields`、`claim_type`、`eligible_for_handoff`。
+
+`AUDIT` 仍然只读。在四部分中的“逐字稿大纲”只概述被送审版本已经存在的段落，不偷偷重写；修复建议放在“还需要补充什么”，并明确需要新的 `REBUILD`。
+
+## 8. 技术视图触发与安全边界
+
+只有用户明确要求技术包、审计详情或 debug，才展示内部审计包。即使展示技术视图，也要先给一句普通中文结论，并避免用字段名代替解释。
+
+任何视图都不得生成完整长视频逐字稿，不得代替 Koda 批准，不得把系统测试通过写成某一期内容已经获批。默认视图的“逐字稿大纲”只提供段落级写作蓝图。
+
+## 9. 决策与批准事件
 
 任何跨会话需保留的 Koda 决定必须写入结构包：
 

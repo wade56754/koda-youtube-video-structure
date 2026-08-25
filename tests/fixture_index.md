@@ -1,4 +1,4 @@
-# Fixture Index — 18 cases
+# Fixture Index — 19 cases
 
 | Fixture | 覆盖 |
 |---|---|
@@ -20,3 +20,4 @@
 | 16_self_reported_pass_objective_violation | 自报全 PASS 但客观含凑时长章节；独立复核后 FAIL / DRAFT |
 | 17_setup_requirements_missing | setup 缺失专测；精确断言 setup_requirements 路径 |
 | 18_strawman_counterargument | 稻草人反方专测；Round 2 必须 FAIL |
+| 19_creator_friendly_rebuild | 分享对话回归；先判断题材与主题、解释结构来源、输出小白版逐字稿大纲并隐藏内部字段 |

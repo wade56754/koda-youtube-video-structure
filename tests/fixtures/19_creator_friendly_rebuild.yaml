@@ -1,0 +1,34 @@
+fixture_id: 19_creator_friendly_rebuild
+regression_source:
+  shared_chat: https://chatgpt.com/share/6a8d8c9a-5100-83e8-b21b-1c9d964644c4
+  observed_failure:
+    - 默认回复直接暴露大量 YAML、专业字段、状态枚举和英文缩写
+    - 没有先区分题材与主题
+    - 只给结构结论，没有说明候选结构的作用与结构来源
+    - 没有普通创作者可以继续使用的逐字稿大纲
+input:
+  user_request: >
+    根据已经创建的视频结构 Skill，梳理第一期 YouTube 内容的视频结构。
+    默认给普通创作者看的版本，不要完整逐字稿。
+  task_packet:
+    mode: REBUILD
+    video_id: V001
+    topic: AI 越来越会生成内容以后，为什么人的内容判断反而更重要
+    existing_structure_or_draft: >
+      使用旧 YouTube、Twitter/X 与 AI 工作流经历，解释频道为什么转型，
+      并给观众一个判断内容是否值得做的方法。
+expected:
+  default_surface: CREATOR_VIEW
+  required_behaviors:
+    - 先判断题材，再提炼主题
+    - 确认目标观众与看完能带走什么
+    - 比较相关结构并说明每种结构的作用、材料要求和不优先原因
+    - 说明所选结构来源，以及哪些部分是本 Skill 的改编
+    - 输出包含段落作用、口语化要点、例子或证据、衔接和预计时长的逐字稿大纲
+    - 还缺的资料只用普通中文说明
+    - 保持完整逐字稿、Koda 审批与 handoff 边界
+  prohibited_behaviors:
+    - 默认回复不得出现 YAML 或 JSON 代码块
+    - 默认回复不得出现内部固定字段、状态枚举或未解释英文缩写
+    - 不得把逐字稿大纲扩写成完整逐字稿
+    - 不得把结构修复或系统测试通过当作 Koda 批准

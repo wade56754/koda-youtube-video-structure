@@ -1,4 +1,4 @@
-# Runtime Contract — MVP v0.1.1
+# Runtime Contract — v0.2.0
 
 ## 1. 覆盖边界
 

@@ -4,6 +4,14 @@
 
 | 来源 / 方法 | 在本 Skill 中的有限用途 | 证据边界 | 冻结输入中的来源 |
 |---|---|---|---|
+| Stephen Toulmin, *The Uses of Argument* | 观点论证型中的主张、依据、反驳与限定责任 | 论证分析，不是视频留存或播放量公式 | https://doi.org/10.1017/CBO9780511840005 |
+| Carolyn R. Miller, “Genre as Social Action” | 先按内容要完成的社会行动和受众情境理解题材，再做路由 | 不提供本 Skill 的固定题材分类或视频模板 | https://doi.org/10.1080/00335638409383686 |
+| Lloyd F. Bitzer, “The Rhetorical Situation” | 判断受众、问题情境与现实约束 | 不提供固定视频结构 | https://www.jstor.org/stable/40236733 |
+| M. David Merrill, “First Principles of Instruction” | 行动教学型的真实问题、示范、应用与整合依据 | 本 Skill 的视频章节顺序属于改编 | https://doi.org/10.1007/BF02505024 |
+| Sweller & Cooper, worked examples | 行动教学型先展示完整例子再引导解决问题的依据 | 研究任务和本项目观众并不完全相同 | https://doi.org/10.1207/s1532690xci0201_3 |
+| George Loewenstein, information-gap theory | 解释真实未知差距为何可以形成张力 | `STP` 缩写和精确顺序不是论文提出的模型 | https://doi.org/10.1037/0033-2909.116.1.75 |
+| Brown, Collins & Duguid, situated cognition | 情境、活动与知识迁移的理论参考 | `VALUE_LOOP` 三步不是论文命名的模型 | https://doi.org/10.3102/0013189X018001032 |
+| Nosek 等，preregistration | 执行前实验登记型区分事前确认与事后探索 | 预注册不是结果证据，也不保证实验有效 | https://doi.org/10.1073/pnas.1708274114 |
 | vidIQ Commentary / Educational | Commentary 与 Educational 的母结构候选 | 工具站公开模板，不是对照实验 | https://vidiq.com/blog/post/write-youtube-video-script/ |
 | George Blackman：payoff 先行、STP | 先确定观众回报；STP 作为可选章节组织方式 | 创作者公开写作系统，不是统一硬规则 | https://www.georgeblackman.com/write-on-time/i-screen-recorded-how-i-write-youtube-scripts-watch-here ; https://writewithai.substack.com/p/write-a-killer-youtube-script-like |
 | Think Media：Hook / Content / Transition | 包装兑现与下一条承接 | 粗粒度行业公式 | https://go.thinkmedia.com/perfect-video-recipe |
@@ -26,6 +34,8 @@
 - 五主状态与独立 blockers；
 - 包装 `HYPOTHESIS` / `LOCKED` 双段门；
 - 路由优先级与 `personal_evidence` 子类型；
+- `STP`、`PEIL`、`VALUE_LOOP` 的精确缩写、字段和顺序；
+- 默认四段创作者视图与内部审计包的双层输出；
 - 纯逻辑推演章节至多一个；
 - 三轮内部审查与 Koda 明确审批门；
 - 同片型至少三条一致信号后才允许考虑升级结构规则。

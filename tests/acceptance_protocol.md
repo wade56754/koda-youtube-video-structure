@@ -1,17 +1,19 @@
-# Behavior Acceptance Protocol — MVP v0.1.1
+# Behavior Acceptance Protocol — v0.2.0
 
 ## 目的
 
-这 18 个 fixtures 验证 Skill 的行为契约，不评价具体文案是否好听，也不使用固定文案字符串匹配。
+这 19 个 fixtures 验证 Skill 的行为契约，不评价具体文案是否好听，也不以固定句子逐字匹配代替语义检查。
 
 ## 执行方式
 
 对每个 `tests/fixtures/*.yaml`：
 
 1. 将 `input.user_request` 与 `input.task_packet` 原样交给安装了本 Skill 的 Agent；
-2. 要求输出一个 Markdown `structure_packet`；
-3. 按 fixture 的 `expected` 做语义检查；
+2. 默认要求输出普通中文的创作者视图；只有 fixture 明确要求技术包时才输出 Markdown `structure_packet`；
+3. 按 fixture 的 `expected` 做语义检查；内部审计包与默认创作者视图分别验收；
 4. 记录每项 `PASS` / `FAIL`，不要因同义改写判失败。
+
+兼容说明：fixtures 01—18 是 v0.1.x 的内部审计包契约。执行这些旧 fixture 时，验收 harness 必须附加“请输出技术包，用于审计验收”的明确请求；不得用它们推翻 v0.2.0 的默认创作者视图。fixture 19 不附加技术请求，专门验证默认输出。
 
 ## 必检字段
 
@@ -26,6 +28,14 @@
 - `prohibited_behaviors` 任何一项出现即失败；
 - 不检查候选标题、钩子或段落的逐字文本；
 - 不以字段齐全替代命题、证据与审批边界检查。
+
+## 默认创作者视图
+
+- 必须先说明题材和主题，再比较候选结构并说明来源，最后给逐字稿大纲；
+- 必须按“这期视频是什么 → 为什么选这种结构 → 逐字稿大纲 → 还需要补充什么”的顺序；
+- 逐字稿大纲每段包含作用、口语化要点、例子 / 证据 / 画面、衔接和预计时长，但不能形成完整可照念台词；
+- 默认回复不得出现 YAML / JSON、内部字段表、内部状态枚举或未解释缩写；
+- 技术包仍须保留原有事实门、审查和审批边界。
 
 ## AUDIT 权限与独立复核
 

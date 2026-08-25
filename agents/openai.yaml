@@ -1,6 +1,6 @@
 interface:
   display_name: "Koda YouTube 视频结构"
-  short_description: "在逐字稿前设计、审查或重构有证据的视频结构"
-  default_prompt: "Use $koda-youtube-video-structure to design, audit, or rebuild this YouTube video structure without writing a full script."
+  short_description: "先判断题材和主题，再给有来源的小白版逐字稿大纲"
+  default_prompt: "Use $koda-youtube-video-structure to identify the 题材 and 主题, compare sourced structure options, and return a plain-Chinese 逐字稿大纲 without writing a full script."
 policy:
   allow_implicit_invocation: true

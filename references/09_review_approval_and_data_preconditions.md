@@ -1,4 +1,4 @@
-# Review, Approval, and Data Preconditions — MVP v0.1.1
+# Review, Approval, and Data Preconditions — v0.2.0
 
 ## 1. 三轮独立结构审查
 
@@ -78,7 +78,7 @@
 
 ## 3. 数据前提 → 允许结论
 
-v0.1.1 不执行完整 RETENTION_REVIEW，但任何发布后数据请求必须使用 `DATA_PRECONDITION_CHECK_ONLY` 覆盖层，并遵守以下边界：
+v0.2.0 不执行完整 RETENTION_REVIEW，但任何发布后数据请求必须使用 `DATA_PRECONDITION_CHECK_ONLY` 覆盖层，并遵守以下边界：
 
 | 想判断什么 | 最低数据前提 | 缺失时允许输出 |
 |---|---|---|
@@ -119,4 +119,4 @@ Adam 的 30 秒 75% 只作为外部参考，不是统一通过线。
 5. 到复核日期后仍成立；
 6. Koda 明确批准升级。
 
-v0.1.1 不自动升级规则。单条视频表现不能固化为永久模板，`DATA_PRECONDITION_CHECK_ONLY` 也不得执行规则升级。
+v0.2.0 不自动升级规则。单条视频表现不能固化为永久模板，`DATA_PRECONDITION_CHECK_ONLY` 也不得执行规则升级。
