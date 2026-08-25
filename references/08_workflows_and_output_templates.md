@@ -375,7 +375,7 @@ round_3_retention_and_compression: PASS | FAIL | NOT_RUN
 
 若用户同时要求完整逐字稿、代替 Koda 批准或提前交接，拒绝也放在 `## 还需要补充什么`，并用普通中文说明下一步。不要为拒绝增加第五部分，也不要引用审批文件路径、字段名或内部状态值来证明拒绝。
 
-默认创作者视图不得出现 YAML / JSON 代码块、固定字段表、内部状态枚举或未解释的英文缩写。尤其不要显示 `structure_packet`、`mode`、`operation_scope`、`blockers`、`setup_requirements`、`video_type`、`support_level`、`primary_goal`、`source_ref`、`Section Card`、`organization_fields`、`claim_type`、`eligible_for_handoff`。
+默认创作者视图不得出现 YAML / JSON 代码块、固定字段表、内部状态枚举或未解释的英文缩写。尤其不要显示 `structure_packet`、`mode`、`operation_scope`、`blockers`、`setup_requirements`、`video_type`、`support_level`、`primary_goal`、`source_ref`、`Section Card`、`organization_fields`、`claim_type`、`eligible_for_handoff`、`UNCONFIRMED`、`PROOF`、`APPROVED_FOR_HANDOFF`、`handoff`。即使用户在请求里使用了这些词，默认回复也要翻译：`UNCONFIRMED` 写成“待核实”，`PROOF` 写成“真实证明”，尚未获准交接写成“目前不能交给下游写稿”。
 
 `AUDIT` 仍然只读。在四部分中的“逐字稿大纲”只概述被送审版本已经存在的段落，不偷偷重写；修复建议放在“还需要补充什么”，并明确需要新的 `REBUILD`。
 

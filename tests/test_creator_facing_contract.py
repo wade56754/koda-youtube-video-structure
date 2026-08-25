@@ -87,6 +87,10 @@ class CreatorFacingContractTest(unittest.TestCase):
             "organization_fields",
             "claim_type",
             "eligible_for_handoff",
+            "UNCONFIRMED",
+            "PROOF",
+            "APPROVED_FOR_HANDOFF",
+            "handoff",
             "```yaml",
             "```json",
         )
@@ -116,6 +120,7 @@ class CreatorFacingContractTest(unittest.TestCase):
 
     def test_internal_audit_packet_remains_available_but_is_not_the_default_reply(self):
         text = OUTPUT_TEMPLATE.read_text(encoding="utf-8")
+        creator_view = text[text.index("## 7. 默认创作者视图") : text.index("## 8. 技术视图触发与安全边界")]
         self.assertIn("内部审计包", text)
         self.assertIn("默认创作者视图", text)
         self.assertIn("只有用户明确要求技术包、审计详情或 debug", text)
@@ -124,6 +129,12 @@ class CreatorFacingContractTest(unittest.TestCase):
         self.assertIn("回复直接以 `## 这期视频是什么` 开头", text)
         self.assertIn("不得增加第五个二级标题", text)
         self.assertIn("拒绝也放在 `## 还需要补充什么`", text)
+        for token in ("UNCONFIRMED", "PROOF", "APPROVED_FOR_HANDOFF", "handoff"):
+            with self.subTest(token=token):
+                self.assertIn(f"`{token}`", creator_view)
+        for translation in ("待核实", "真实证明", "目前不能交给下游写稿"):
+            with self.subTest(translation=translation):
+                self.assertIn(translation, creator_view)
 
     def test_v020_release_metadata_and_ci_cover_the_new_contract(self):
         readme = README.read_text(encoding="utf-8")
